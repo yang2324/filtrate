@@ -1,0 +1,35 @@
+<!--筛选栏-->
+<view class="cxj-contents">
+  <view class="cxj-menu">
+    <view class="flex-view{{item.active?' active':''}}" wx:for="{{tabTxt}}" wx:key="" data-index="{{index}}"
+      bindtap="filterTab" wx:key="id">
+      <text class="flex_nav {{item.active?' active':''}}">{{item.text}}</text>
+      <text class="iconfontAllNavs {{item.active?' iconshanglaxiala-':'iconshanglaxiala-1'}}"></text>
+    </view>
+  </view>
+</view>
+
+<!--条件选项栏-->
+<view class="cxj-tab-layout" style="top:{{navH}}px" hidden="{{!item.active}}" wx:for="{{tabTxt}}"
+  wx:for-index="index1" wx:for-item="item" wx:key="id">
+  <scroll-view scroll-y class="scroll">
+    <view class="cxj-tap-wrap">
+      <view>
+        <view wx:for="{{item.child}}" wx:for-item="item_child" wx:key="id" wx:for-index="index2">
+          <view class="title">{{item_child.title}}</view>
+          <view class="cxj-tap-main">
+            <view class="navs {{item_childtype.selected==true?'active':''}}" wx:for="{{item_child.childType}}"
+              wx:for-item="item_childtype" wx:key="id" data-id="{{item_childtype.id}}" data-index="0"
+              data-txt="{{item_childtype.text}}" wx:for-index="index3">
+              <view bindtap="clickTabChild" data-index1="{{index1}}" data-index2="{{index2}}" data-index3="{{index3}}">{{item_childtype.text}}</view>
+            </view>
+          </view>
+        </view>
+      </view>
+      <view class="select_btn">
+        <button class="clear" bindtap="filterClears">清空条件</button>
+        <button class="submit" bindtap="filterSubmit">确定</button>
+      </view>
+    </view>
+  </scroll-view>
+</view>
